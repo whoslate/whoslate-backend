@@ -1,5 +1,5 @@
 """
 Model init
 """
-from .ext import db, migrate
+from .database import db, migrate
 from .user import *

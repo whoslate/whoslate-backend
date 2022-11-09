@@ -1,7 +1,7 @@
 """
 User entity
 """
-from .ext import db
+from .database import db
 
 
 class User(db.Model):
