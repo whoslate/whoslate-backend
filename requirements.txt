@@ -15,8 +15,6 @@ lazy-object-proxy==1.8.0
 Mako==1.2.3
 MarkupSafe==2.1.1
 mccabe==0.7.0
-mypy==0.990
-mypy-extensions==0.4.3
 packaging==21.3
 platformdirs==2.5.3
 pluggy==1.0.0
