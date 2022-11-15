@@ -1,0 +1,4 @@
+[MAIN]
+disable=global-statement
+
+load-plugins=pylint_pytest,pylint_flask_sqlalchemy
