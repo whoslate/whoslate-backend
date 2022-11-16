@@ -31,3 +31,6 @@ tomlkit==0.11.6
 typing_extensions==4.4.0
 Werkzeug==2.2.2
 wrapt==1.14.1
+
+loguru~=0.6.0
+twilio~=7.15.2
