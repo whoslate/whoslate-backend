@@ -2,7 +2,6 @@
 Module for accessing other user
 """
 from .get_user_profile import GetUserProfile
-from .update_user_profile import UpdateUserProfile
 from ..restx_namespace import user_ns
 
 

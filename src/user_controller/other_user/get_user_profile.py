@@ -20,6 +20,9 @@ class GetUserProfile(Resource):
     @user_ns.response(200, model=user_public_info_model, description='Success')
     @user_ns.response(404, model=api_response, description='User not found')
     def get(self, user_id: int):
+        """
+        Get other user's profile
+        """
         user = User.get_user_by_id(user_id)
         if not user:
             return {
