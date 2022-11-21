@@ -12,13 +12,12 @@ class User(db.Model):
     user_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     phone_number = db.Column(db.String(64), nullable=False)
     phone_country_code = db.Column(db.String(64), nullable=False)
-    full_name = db.Column(db.String(64), nullable=False)
+    full_name = db.Column(db.String(64), nullable=True)
     password = db.Column(db.String(64), nullable=True)
     db.UniqueConstraint(phone_number, phone_country_code)
 
-    def __init__(self, phone_number: str, phone_country_code: str, full_name: str):
+    def __init__(self, phone_number: str, phone_country_code: str):
         self.set_phone_number(phone_country_code=phone_country_code, phone_number=phone_number)
-        self.set_full_name(full_name)
 
     def set_phone_number(self, phone_country_code: str, phone_number: str):
         """
@@ -113,7 +112,7 @@ class User(db.Model):
             cls.save()
 
     @classmethod
-    def new_user(cls, phone_country_code: str, phone_number: str, full_name: str):
+    def new_user(cls, phone_country_code: str, phone_number: str):
         """
         Create new user
         :param full_name:
@@ -121,7 +120,7 @@ class User(db.Model):
         :param phone_number:
         :return: new user
         """
-        new_user: cls = cls(phone_number, phone_country_code, full_name)
+        new_user: cls = cls(phone_number, phone_country_code)
         db.session.add(new_user)
         cls.save()
         return new_user
