@@ -67,7 +67,7 @@ class User(db.Model):
 
     def delete(self):
         """
-        Delete user
+        Delete other_user
         :return: void
         """
         db.session.delete(self)
@@ -82,12 +82,24 @@ class User(db.Model):
         db.session.commit()
 
     @classmethod
+    def get_user_by_id(cls, user_id: int):
+        """
+        Query other_user by id
+        :param user_id:
+        :return:
+        """
+        user: cls = cls.query.filter_by(
+            user_id=user_id
+        ).first()
+        return user
+
+    @classmethod
     def get_user_by_phone(cls, phone_country_code: str, phone_number: str):
         """
-        Query user by phone
+        Query other_user by phone
         :param phone_country_code:
         :param phone_number:
-        :return: user object or None
+        :return: other_user object or None
         """
         user: cls = cls.query.filter_by(
             phone_number=phone_number,
@@ -98,7 +110,7 @@ class User(db.Model):
     @classmethod
     def delete_user_by_phone(cls, phone_country_code: str, phone_number: str):
         """
-        Delete user by phone number
+        Delete other_user by phone number
         :param phone_country_code: such as '1'
         :param phone_number: such as '9877632'
         :return: void
@@ -114,11 +126,11 @@ class User(db.Model):
     @classmethod
     def new_user(cls, phone_country_code: str, phone_number: str):
         """
-        Create new user
+        Create new other_user
         :param full_name:
         :param phone_country_code:
         :param phone_number:
-        :return: new user
+        :return: new other_user
         """
         new_user: cls = cls(phone_number, phone_country_code)
         db.session.add(new_user)
