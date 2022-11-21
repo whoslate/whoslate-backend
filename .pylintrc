@@ -1,4 +1,4 @@
-[MAIN]
+[MASTER]
 disable=global-statement
-
+ignore=migrations
 load-plugins=pylint_pytest,pylint_flask_sqlalchemy
