@@ -27,7 +27,7 @@ def test_new_user(app):
     :return:
     """
     with app.app_context():
-        test_user = User.new_user(TEST_COUNTRY_CODE, TEST_PHONE_NUMBER, TEST_FULL_NAME)
+        test_user = User.new_user(TEST_COUNTRY_CODE, TEST_PHONE_NUMBER)
         assert isinstance(test_user, User)
 
 
