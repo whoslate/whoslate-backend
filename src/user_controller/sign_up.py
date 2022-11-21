@@ -1,11 +1,13 @@
 """
 Module for sign up
 """
+from flask_jwt_extended import create_access_token
 from flask_restx import Resource
 from twilio.base.exceptions import TwilioRestException
 
 from src.restx_api_response_model import api_response
 from .restx_namespace import user_ns
+from .sign_up_response_model import sign_up_response
 from ..model import User
 from ..utils import create_verification, verification_check
 
@@ -24,8 +26,8 @@ class GetPhoneVerificationCodeForSignUp(Resource):
     @user_ns.marshal_with(api_response)
     def post(self):
         """
+        Sign up step #1
         Get phone number and return status
-        :return:
         """
         args = phone_number_parser.parse_args(strict=True)
         country_code = str(args['country_code'])
@@ -80,11 +82,11 @@ class CheckPhoneVerificationCodeForSignUp(Resource):
     """
 
     @user_ns.expect(phone_number_verify_parser)
-    @user_ns.marshal_with(api_response)
+    @user_ns.marshal_with(sign_up_response)
     def post(self):
         """
+        Sign up step #2
         Get phone number, verification code, and full name, then return status
-        :return:
         """
         args = phone_number_verify_parser.parse_args(strict=True)
         country_code = str(args['country_code'])
@@ -100,16 +102,18 @@ class CheckPhoneVerificationCodeForSignUp(Resource):
             if verification_result == 'pending':
                 return {
                     'status': 'pending',
-                    'msg': 'Your verification code is wrong'
+                    'msg': 'Your verification code is wrong',
+                    'access_token': ''
                 }
         except TwilioRestException as err:
             return {
                 'status': 'error',
-                'msg': err.msg
+                'msg': err.msg,
+                'access_token': ''
             }, 400
 
         try:
-            User.new_user(
+            user = User.new_user(
                 phone_country_code=country_code,
                 phone_number=phone_number,
                 full_name=full_name
@@ -117,9 +121,13 @@ class CheckPhoneVerificationCodeForSignUp(Resource):
         except ValueError as err:
             return {
                 'status': 'error',
-                'msg': err.args[0]
+                'msg': err.args[0],
+                'access_token': ''
             }, 400
+
+        access_token = create_access_token(identity=user.user_id)
         return {
             'status': 'success',
-            'msg': 'Account has been created'
+            'msg': 'Account has been created',
+            'access_token': access_token
         }, 200
