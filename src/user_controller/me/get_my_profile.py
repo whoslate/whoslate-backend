@@ -4,9 +4,9 @@ Module for get my profile
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from flask_restx import Resource
 
-from src.user_controller.restx_user_info_model import user_private_info_model
+from src.restx_models.user_info import user_private_info_model
 from ..restx_namespace import user_ns
-from ...restx_api_response_model import api_response
+from ...restx_models.api_response import api_response
 from ...model import User
 
 

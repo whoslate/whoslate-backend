@@ -5,7 +5,7 @@ from flask_restx import Resource
 from twilio.base.exceptions import TwilioRestException
 from .restx_namespace import user_ns
 from ..utils import create_verification
-from ..restx_api_response_model import api_response
+from ..restx_models.api_response import api_response
 
 phone_number_parser = user_ns.parser()
 phone_number_parser.add_argument('country_code', type=int, required=True)

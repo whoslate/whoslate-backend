@@ -6,7 +6,7 @@ from flask_restx import Resource
 from twilio.base.exceptions import TwilioRestException
 
 from .restx_namespace import user_ns
-from .restx_sign_in_response_model import sign_in_response
+from ..restx_models.sign_in_response import sign_in_response
 from ..model import User
 from ..utils import verification_check
 

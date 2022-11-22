@@ -42,3 +42,18 @@ def test_new_event_and_query(app):
         assert isinstance(test_event.event_desc, str)
         event = Event.get_event_by_id(test_event.event_id)
         assert isinstance(event, Event)
+        Event.new_event(TEST_EVENT_NAME, test_user.user_id)
+        events = test_user.events
+        assert len(events) == 2
+
+
+def test_remove_testing_data(app):
+    """
+    Remove all testing data
+    :param app:
+    :return:
+    """
+    with app.app_context():
+        User.delete_user_by_phone(TEST_COUNTRY_CODE, TEST_PHONE_NUMBER)
+        Event.delete_event_by_event_name(TEST_EVENT_NAME)
+        Event.delete_event_by_event_name(TEST_EVENT_NAME)

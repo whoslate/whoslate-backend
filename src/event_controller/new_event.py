@@ -8,8 +8,8 @@ from ..model.user import User
 from ..model.event import Event
 
 from .restx_namespace import event_ns
-from ..restx_api_response_model import api_response
-from .restx_event_model import event_restx_model
+from ..restx_models.api_response import api_response
+from ..restx_models.event import event_restx_model
 
 new_event_parser = event_ns.parser()
 new_event_parser.add_argument('event_name', type=str, required=True)
