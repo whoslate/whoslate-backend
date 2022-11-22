@@ -3,7 +3,7 @@ Model for event
 """
 from flask_restx import fields
 
-from .restx_namespace import event_ns
+from src.event_controller.restx_namespace import event_ns
 
 event_restx_model = event_ns.model('Event', {
     'event_id': fields.Integer(description='Event ID'),

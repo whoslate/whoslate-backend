@@ -2,7 +2,7 @@
 Model for restx
 """
 from flask_restx import fields
-from .restx_api import restx_api
+from src.restx_api import restx_api
 
 
 api_response = restx_api.model('APIResponse', {
