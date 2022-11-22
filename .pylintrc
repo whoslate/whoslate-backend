@@ -1,4 +1,4 @@
-[MASTER]
+[MAIN]
 disable=
     global-statement,
     duplicate-code
