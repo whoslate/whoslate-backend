@@ -4,6 +4,7 @@ Fixtures
 import pytest
 from flask import Flask
 from app import create_app
+# pylint: disable=redefined-outer-name
 
 
 @pytest.fixture()
