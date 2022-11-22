@@ -8,7 +8,7 @@ from src import restx_api
 user_public_info_model = restx_api.model('UserPublicInfo', {
     'user_id': fields.Integer(description='User ID'),
     'full_name': fields.String(description='User full name')
-}, description='Response from getting a other_user information')
+}, description='Response from getting a user information')
 
 user_private_info_model = restx_api.inherit('UserPrivateInfo', user_public_info_model, {
     'phone_number': fields.String(description='User phone number'),

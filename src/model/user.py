@@ -16,6 +16,7 @@ class User(db.Model):
     full_name = db.Column(db.String(64), nullable=True)
     password = db.Column(db.String(64), nullable=True)
     events = db.relationship('Event', backref='user', lazy=True)
+    attendance = db.relationship('Attendance', backref='user', lazy=True)
     db.UniqueConstraint(phone_number, phone_country_code)
 
     def __init__(self, phone_number: str, phone_country_code: str):
@@ -69,7 +70,7 @@ class User(db.Model):
 
     def delete(self):
         """
-        Delete other_user
+        Delete user
         :return: void
         """
         db.session.delete(self)
@@ -86,7 +87,7 @@ class User(db.Model):
     @classmethod
     def get_user_by_id(cls, user_id: int):
         """
-        Query other_user by id
+        Query user by id
         :param user_id:
         :return:
         """
@@ -98,10 +99,10 @@ class User(db.Model):
     @classmethod
     def get_user_by_phone(cls, phone_country_code: str, phone_number: str):
         """
-        Query other_user by phone
+        Query user by phone
         :param phone_country_code:
         :param phone_number:
-        :return: other_user object or None
+        :return: user object or None
         """
         user: cls = cls.query.filter_by(
             phone_number=phone_number,
@@ -112,7 +113,7 @@ class User(db.Model):
     @classmethod
     def delete_user_by_phone(cls, phone_country_code: str, phone_number: str):
         """
-        Delete other_user by phone number
+        Delete user by phone number
         :param phone_country_code: such as '1'
         :param phone_number: such as '9877632'
         :return: void
@@ -128,11 +129,11 @@ class User(db.Model):
     @classmethod
     def new_user(cls, phone_country_code: str, phone_number: str):
         """
-        Create new other_user
+        Create new user
         :param full_name:
         :param phone_country_code:
         :param phone_number:
-        :return: new other_user
+        :return: new user
         """
         new_user: cls = cls(phone_number, phone_country_code)
         db.session.add(new_user)

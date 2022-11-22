@@ -17,6 +17,7 @@ class Event(db.Model):
     event_desc = db.Column(db.Text, nullable=True)
     start_time = db.Column(db.DateTime)
     key_for_attendee = db.Column(db.String(64), nullable=False)
+    attendances = db.relationship('Attendance', backref='event', lazy=True)
 
     def __init__(self, event_name: str, organizer_user_id: int):
         self.set_event_name(event_name)
@@ -41,6 +42,14 @@ class Event(db.Model):
         :return:
         """
         self.event_desc = event_desc
+
+    def delete(self):
+        """
+        Delete event
+        :return: void
+        """
+        db.session.delete(self)
+        db.session.commit()
 
     @staticmethod
     def save():

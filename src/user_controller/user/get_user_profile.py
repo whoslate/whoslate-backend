@@ -1,5 +1,5 @@
 """
-Module for get other_user profile
+Module for get user profile
 """
 from flask_jwt_extended import jwt_required
 from flask_restx import Resource
