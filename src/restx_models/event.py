@@ -3,9 +3,9 @@ Model for event
 """
 from flask_restx import fields
 
-from src.event_controller.restx_namespace import event_ns
+from src.restx_api import restx_api
 
-event_restx_model = event_ns.model('Event', {
+event_restx_model = restx_api.model('Event', {
     'event_id': fields.Integer(description='Event ID'),
     'event_name': fields.String(description='Event Name'),
     'organizer_user_id': fields.String(description="Organizer's user ID"),
