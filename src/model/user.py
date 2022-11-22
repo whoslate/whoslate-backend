@@ -3,6 +3,7 @@ User entity
 """
 import hashlib
 from .database import db
+# pylint: disable=no-member
 
 
 class User(db.Model):
@@ -14,6 +15,7 @@ class User(db.Model):
     phone_country_code = db.Column(db.String(64), nullable=False)
     full_name = db.Column(db.String(64), nullable=True)
     password = db.Column(db.String(64), nullable=True)
+    events = db.relationship('Event', backref='user', lazy=True)
     db.UniqueConstraint(phone_number, phone_country_code)
 
     def __init__(self, phone_number: str, phone_country_code: str):

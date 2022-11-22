@@ -1,4 +1,7 @@
 [MASTER]
-disable=global-statement
+disable=
+    global-statement,
+    duplicate-code
 ignore=migrations
-load-plugins=pylint_pytest,pylint_flask_sqlalchemy
+load-plugins=
+    pylint_pytest
