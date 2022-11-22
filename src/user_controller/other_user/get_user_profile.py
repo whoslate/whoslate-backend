@@ -12,7 +12,7 @@ from ...model import User
 
 class GetUserProfile(Resource):
     """
-    Get other_user profile
+    Get other user profile
     """
 
     @user_ns.doc(security='apikey')
@@ -27,7 +27,7 @@ class GetUserProfile(Resource):
         if not user:
             return {
                 'status': 'error',
-                'msg': 'other_user not found'
+                'msg': 'user not found'
             }, 404
         return {
                 'user_id': user.user_id,
