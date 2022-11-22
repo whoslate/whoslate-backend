@@ -22,7 +22,7 @@ class GetVerificationCode(Resource):
     @user_ns.marshal_with(api_response)
     def post(self):
         """
-        Get phone number and return status
+        Input phone number, then you will receive verification code
         """
         args = phone_number_parser.parse_args(strict=True)
         country_code = str(args['country_code'])

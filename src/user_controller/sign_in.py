@@ -27,7 +27,7 @@ class Signin(Resource):
     @user_ns.marshal_with(sign_in_response)
     def post(self):
         """
-        Get phone number, verification code, and full name, then return status and access token
+        Input phone number, verification code, then return access token
         """
         args = signin_parser.parse_args(strict=True)
         country_code = str(args['country_code'])
