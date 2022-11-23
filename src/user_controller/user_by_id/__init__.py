@@ -7,7 +7,7 @@ from ..restx_namespace import user_ns
 
 @user_ns.route('/<int:user_id>')
 @user_ns.param('user_id', "User's ID")
-class User(
+class UserById(
     GetUserProfile
 ):
     """

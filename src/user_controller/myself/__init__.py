@@ -7,7 +7,7 @@ from .sign_in import Signin
 
 
 @user_ns.route('/')
-class Me(GetMyProfile, Signin):
+class MySelf(GetMyProfile, Signin):
     """
     This class will inherit other rest controller classes
     """
