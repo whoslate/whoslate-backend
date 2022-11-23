@@ -4,12 +4,12 @@ Module for create a new event
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from flask_restx import Resource
 
-from ..model.user import User
-from ..model.event import Event
+from src.model.user import User
+from src.model.event import Event
 
-from .restx_namespace import event_ns
-from ..restx_models.api_response import api_response
-from ..restx_models.event import event_restx_model
+from src.event_controller.restx_namespace import event_ns
+from src.restx_models.api_response import api_response
+from src.restx_models.event import event_private_restx_model
 
 new_event_parser = event_ns.parser()
 new_event_parser.add_argument('event_name', type=str, required=True)
@@ -22,7 +22,7 @@ class NewEvent(Resource):
 
     @event_ns.doc(security='apikey')
     @event_ns.expect(new_event_parser)
-    @event_ns.response(code=200, model=event_restx_model, description='Success')
+    @event_ns.response(code=200, model=event_private_restx_model, description='Success')
     @event_ns.response(code=400, model=api_response, description='Error')
     @jwt_required()
     def post(self):

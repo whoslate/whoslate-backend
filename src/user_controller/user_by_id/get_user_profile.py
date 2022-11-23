@@ -1,5 +1,5 @@
 """
-Module for get user profile
+Module for get user profile by id
 """
 from flask_jwt_extended import jwt_required
 from flask_restx import Resource
@@ -12,7 +12,7 @@ from ...model import User
 
 class GetUserProfile(Resource):
     """
-    Get other user profile
+    Get user profile by id
     """
 
     @user_ns.doc(security='apikey')
@@ -21,7 +21,7 @@ class GetUserProfile(Resource):
     @user_ns.response(404, model=api_response, description='User not found')
     def get(self, user_id: int):
         """
-        Get other user's profile
+        Get user's profile by user id
         """
         user = User.get_user_by_id(user_id)
         if not user:

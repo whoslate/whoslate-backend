@@ -5,11 +5,11 @@ from typing import List
 
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from flask_restx import Resource, fields
-from .restx_namespace import event_ns
-from ..model import Event
-from ..model.user import User
-from ..restx_models.api_response import api_response
-from ..restx_models.event import event_restx_model
+from src.event_controller.restx_namespace import event_ns
+from src.model import Event
+from src.model.user import User
+from src.restx_models.api_response import api_response
+from src.restx_models.event import event_private_restx_model
 
 
 class GetEvents(Resource):
@@ -21,7 +21,7 @@ class GetEvents(Resource):
     @event_ns.response(code=400, model=api_response, description='Error')
     @event_ns.response(
         code=200,
-        model=fields.List(fields.Nested(event_restx_model)),
+        model=fields.List(fields.Nested(event_private_restx_model)),
         description='Success'
     )
     @jwt_required()
