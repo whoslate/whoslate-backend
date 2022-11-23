@@ -3,7 +3,7 @@ Test for event model
 """
 from datetime import datetime
 
-from src import User
+from src.model.user import User
 from src.model.event import Event
 TEST_PHONE_NUMBER = '987654321'
 TEST_COUNTRY_CODE = '1'
