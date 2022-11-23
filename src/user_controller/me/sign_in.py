@@ -5,10 +5,10 @@ from flask_jwt_extended import create_access_token
 from flask_restx import Resource
 from twilio.base.exceptions import TwilioRestException
 
-from .restx_namespace import user_ns
-from ..restx_models.sign_in_response import sign_in_response
-from ..model import User
-from ..utils import verification_check
+from src.user_controller.restx_namespace import user_ns
+from src.restx_models.sign_in_response import sign_in_response
+from src.model import User
+from src.utils import verification_check
 
 
 signin_parser = user_ns.parser()
@@ -17,7 +17,6 @@ signin_parser.add_argument('phone_number', type=int, required=True)
 signin_parser.add_argument('verification_code', type=int, required=True)
 
 
-@user_ns.route('/signin')
 class Signin(Resource):
     """
     Controller for sign up
@@ -27,7 +26,7 @@ class Signin(Resource):
     @user_ns.marshal_with(sign_in_response)
     def post(self):
         """
-        Input phone number, verification code, then return access token
+        Sign in: Input phone number, verification code, then return access token
         """
         args = signin_parser.parse_args(strict=True)
         country_code = str(args['country_code'])

@@ -15,7 +15,6 @@ new_event_parser = event_ns.parser()
 new_event_parser.add_argument('event_name', type=str, required=True)
 
 
-@event_ns.route('/new_event')
 class NewEvent(Resource):
     """
     Controller for creating new event
