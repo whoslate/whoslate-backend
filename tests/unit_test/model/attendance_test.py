@@ -29,7 +29,6 @@ def test_init(app):
             User.new_user(TEST_COUNTRY_CODE, TEST_PHONE_NUMBER)
 
 
-
 def test_create_attendance(app):
     """
     Create user, event, and attendance
@@ -40,6 +39,7 @@ def test_create_attendance(app):
         test_user = User.get_user_by_phone(TEST_COUNTRY_CODE, TEST_PHONE_NUMBER)
         event = Event.new_event(TEST_EVENT_NAME, test_user.user_id)
         attendance = Attendance.new_attendance(event.event_id, test_user.user_id)
+        Attendance.new_attendance(event.event_id, test_user.user_id)
         assert isinstance(attendance.time, datetime)
         test_user.delete()
         event.delete()

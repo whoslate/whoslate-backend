@@ -16,7 +16,7 @@ class User(db.Model):
     full_name = db.Column(db.String(64), nullable=True)
     password = db.Column(db.String(64), nullable=True)
     events = db.relationship('Event', backref='user', lazy=True)
-    attendance = db.relationship('Attendance', backref='user', lazy=True)
+    attendances = db.relationship('Attendance', backref='user', lazy=True)
     db.UniqueConstraint(phone_number, phone_country_code)
 
     def __init__(self, phone_number: str, phone_country_code: str):
@@ -73,6 +73,8 @@ class User(db.Model):
         Delete user
         :return: void
         """
+        for event in self.events:
+            event.delete()
         db.session.delete(self)
         db.session.commit()
 

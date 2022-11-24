@@ -48,6 +48,8 @@ class Event(db.Model):
         Delete event
         :return: void
         """
+        for attendance in self.attendances:
+            attendance.delete()
         db.session.delete(self)
         db.session.commit()
 
